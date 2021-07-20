@@ -10,7 +10,6 @@ const css = require('css')
 const pxRegExp = /\b(\d+(\.\d+)?)px\b/;
 class Px2rem{
   constructor(config) {
-
     this.config = config
   }
   generateRem (cssText) {
