@@ -32,21 +32,27 @@ class Px2rem{
     }
     // css 转成语法树
     var astObj = css.parse(cssText)
+    console.log('新CSS')
+    console.log(css.stringify(astObj))
+    console.log('旧语法树')
+    console.log(JSON.stringify(astObj))
     // console.log(JSON.stringify(astObj,null,2))
     processRules(astObj.stylesheet.rules)
     console.log('新语法树')
-    console.log(astObj)
+    console.log(JSON.stringify(astObj))
+    console.log('新CSS')
+    console.log(css.stringify(astObj))
     // 返回新的语法树
     return css.stringify(astObj)
     return cssText
   }
 
   _getCalcValue (type, value) {
-    console.log('type==',type)
+    // console.log('type==',type)
     // rem 单位(1rem宽度); 精度
     let { remUnit, remPrecision } = this.config
-    console.log('_getCalcValue')
-    console.log(remUnit,remPrecision)
+    // console.log('_getCalcValue')
+    // console.log(remUnit,remPrecision)
     return value.replace(pxRegExp, (_, $1) => {
       // $1 匹配中的第一个子项
       let val = (parseFloat($1) / remUnit).toFixed(remPrecision)
