@@ -451,6 +451,7 @@ function setBodyFontSize () {
   if (document.body) {
     document.body.style.fontSize = (12 * dpr) + 'px'
   } else {
+    // 当纯HTML被完全加载以及解析时，DOMContentLoaded 事件会被触发，而不必等待样式表，图片或者子框架完成加载
     document.addEventListener('DOMContentLoaded', setBodyFontSize)
   }
 }

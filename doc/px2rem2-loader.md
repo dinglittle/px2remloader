@@ -17,6 +17,11 @@ let loaderUtils = require('loader-utils')
 function loader (source) {
   // 通过 getOptions 方法可以获得用户在 webpack.config.js 里配置的参数对象 {remUnit:75,remPrecision:8}
   let options = loaderUtils.getOptions(this)
+  console.log(this.resource) // 当前正在转换的模块的绝对路径
+  if (options.exclude && options.exclude.test(this.resource)) {
+    return source; // 不转换, 直接返回
+  }
+
   let px2rem = new Px2rem(options);
   let targetSource = px2rem.generateRem(source)// 生成rem
   console.log(source)
